@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'iran-sans';
+    src: url(./fonts/IRANSansX-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'iran-sansb';
+    src: url(./fonts/IRANSansXFaNum-ExtraBold.ttf);
+}
+body{
+    direction: rtl;
+    font-family: 'iran-sans';
+}
+
+.bold-irsans{
+    font-family: 'iran-sansb';
+}
