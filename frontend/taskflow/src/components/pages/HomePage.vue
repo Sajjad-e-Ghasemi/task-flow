@@ -1,10 +1,6 @@
 <template>
   <div>
-    <h6 class="bold-irsans text-xs">
-        <slot>
-
-        </slot>
-    </h6>
+    
   </div>
 </template>
 

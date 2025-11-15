@@ -1,8 +1,10 @@
 <template>
   <div>
-    <nav class="flex flex-col gap-10 mt-10 w-60 ">
-        <a href="/" class="flex flex-row justify-between p-5 rounded-xl bg-yellow-300">
-            <UrlText>
+    <nav class="flex flex-col gap-10 w-fit items-start">
+        <a href="/" class="flex flex-row justify-between gap-50 p-3 rounded-xl bg-yellow-300 items-center hover:bg-amber-200 w-fit">
+            <UrlText
+            v-show="is_expanded"
+            >
                 داشبورد
             </UrlText>
         
@@ -12,8 +14,10 @@
                 </svg>
             </UrlIcon>
         </a>
-        <a href="/" class="flex flex-row justify-between p-5 rounded-xl">
-            <UrlText>
+        <a href="/" class="flex flex-row justify-between gap-50 p-3 rounded-xl hover:bg-amber-200 items-center w-fit">
+            <UrlText
+            v-show="is_expanded"
+            >
                 تنظیمات
             </UrlText>
             <UrlIcon>
@@ -22,8 +26,10 @@
                 </svg>
             </UrlIcon>
         </a>
-        <a href="/" class="flex flex-row justify-between gap-20 p-5 rounded-xl">
-            <UrlText>
+        <a href="/" class="flex flex-row justify-between gap-54 p-3 rounded-xl hover:bg-amber-200 items-center w-fit">
+            <UrlText 
+            v-show="is_expanded"
+            >
                 اسناد
             </UrlText>
             <UrlIcon>
@@ -40,6 +46,8 @@
 <script setup>
 import UrlIcon from '../atoms/UrlIcon.vue';
 import UrlText from '../atoms/UrlText.vue';
+
+defineProps(['is_expanded']);
 </script>
 
 <style>
