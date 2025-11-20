@@ -21,6 +21,7 @@
     <div class="">
         <UrlNavigation
         :is_expanded="is_expanded"
+        :urls="urls"
         />
     </div>
     <div class="">
@@ -32,18 +33,29 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import NavBrand from '../atoms/NavBrand.vue';
 import UrlNavigation from '../molecules/UrlNavigation.vue';
 import UserAccounts from '../molecules/UserAccounts.vue';
 import UserAvatar from '../atoms/UserAvatar.vue';
 import UserName from '../atoms/UserName.vue';
 import ToggleButton from '../atoms/ToggleButton.vue';
+import DashboardIcon from '../atoms/DashboardIcon.vue';
+import SettingIcon from '../atoms/SettingIcon.vue';
+import DocsIcon from '../atoms/DocsIcon.vue';
+
+const urls = reactive([ 
+  {title:"داشبورد" ,name: 'سایت مدیریت وظایف | taskflow', icon:DashboardIcon},
+  {title: 'اسناد', name: 'اسناد', icon:DocsIcon},
+  {title: 'تنظیمات',name: 'تنظیمات سایت', icon:SettingIcon},
+])
+
 
 const is_expanded = ref(false); 
 const toggleNav = () => {
   is_expanded.value = !is_expanded.value;
 };
+
 
 </script>
 

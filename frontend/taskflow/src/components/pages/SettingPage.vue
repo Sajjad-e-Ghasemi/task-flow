@@ -1,13 +1,11 @@
 <template>
   <div>
-    <h1>
-        setting
-    </h1>
+    <SettingTemplate />
   </div>
 </template>
 
 <script setup>
-
+import SettingTemplate from '../templates/SettingTemplate.vue';
 </script>
 
 <style>

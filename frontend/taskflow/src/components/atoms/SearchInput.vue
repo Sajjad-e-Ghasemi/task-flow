@@ -1,6 +1,6 @@
 <template>
   <div >
-    <input type="text" placeholder="چیزی جست و جو کن.!" class="outline-0 w:xs" name="" id="">
+    <input type="text" placeholder="چیزی جست و جو کن.!" class="outline-0 w-lg" name="" id="">
   </div>
 </template>
 
