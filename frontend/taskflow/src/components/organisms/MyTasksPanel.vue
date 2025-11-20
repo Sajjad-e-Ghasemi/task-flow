@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-10">
+  <div class="xl:flex flex-col gap-10 transition-all duration-200 hidden fixed left-60">
     <div class="">
         <AboutYou />
     </div>

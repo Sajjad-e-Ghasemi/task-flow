@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-gray-200 p-5 w-xl text-gray-600 flex flex-row justify-between rounded-2xl">
+  <div 
+  class="bg-gray-200 p-5 w-md lg:w-xl mx-auto  text-gray-600 md:flex flex-row justify-between rounded-2xl"  >
     <SearchInput />
     <SearchIcon />
   </div>

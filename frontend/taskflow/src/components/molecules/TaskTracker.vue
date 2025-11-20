@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-between items-center p-7 rounded-2xl" id="task-tracker">
+  <div class="flex flex-row justify-between items-center p-7 rounded-2xl w-full" id="task-tracker">
     <div class="">
         <RecorderBtn />
     </div>

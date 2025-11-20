@@ -1,5 +1,5 @@
 <template>
-    <div id="profile" class="flex flex-row justify-between">
+    <div id="profile" class="flex flex-row justify-between items-center">
         <div class="flex flex-row gap-2" id="profile">
             <UserAvatar />
             <UserName />

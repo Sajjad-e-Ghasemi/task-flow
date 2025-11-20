@@ -14,6 +14,10 @@ body{
     font-family: 'iran-sans';
 }
 
+html {
+    font-size: 110%; /* حدود 10% بزرگ‌تر */
+  }
+
 .bold-irsans{
     font-family: 'iran-sansb';
 }
