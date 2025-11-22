@@ -1,4 +1,4 @@
-<template>
+a<template>
     <div>
       <nav class="flex flex-col gap-10 w-fit items-start">
         <router-link 

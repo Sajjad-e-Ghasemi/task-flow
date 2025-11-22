@@ -1,5 +1,6 @@
 <template>
-    <router-link href="">
+    <router-link 
+    :to="{name : url_name}">
         <div class="flex flex-col items-center text-xs">
             <slot>
 
@@ -19,6 +20,10 @@ defineProps({
   text: {
     type: String,
     required: true
+  },
+  url_name:{
+    type: String,
+    required: false
   }
 });
 

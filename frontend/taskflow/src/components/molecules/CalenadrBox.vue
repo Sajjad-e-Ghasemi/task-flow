@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="lg:flex flex-row gap-6 hidden">
+    <div class="flex flex-row lg:gap-6 gap-2 justify-center">
         <DayText 
         :title="day.title" 
         :active="day.isCurrent" 

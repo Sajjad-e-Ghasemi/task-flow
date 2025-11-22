@@ -15,7 +15,7 @@
 
             <CalenadrBox />
 
-            <div class="overflow-y-auto p-2 flex flex-col gap-2 max-h-[400px]">
+            <div class="overflow-y-auto p-2 flex flex-col gap-2 md:max-h-[400px] max-h-[300px]">
                 <DidItBox />
                 <DidItBox />
                 <DidItBox />

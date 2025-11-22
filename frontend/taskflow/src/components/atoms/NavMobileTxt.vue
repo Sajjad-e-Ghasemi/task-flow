@@ -1,7 +1,7 @@
 <!-- NavMobileTxt.vue (button variant) -->
 <template>
   <a
-    class="inline-block px-4 py-2 rounded-4xl text-black "
+    class="inline-block px-4 py-2 rounded-4xl text-white "
     @click="$emit('click')"
   >
     {{ text }}
