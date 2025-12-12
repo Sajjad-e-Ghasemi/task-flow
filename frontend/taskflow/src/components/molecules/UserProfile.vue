@@ -1,30 +1,61 @@
 <template>
-    <div id="profile" class="flex flex-row justify-between items-center">
-        <div class="flex flex-row gap-2" id="profile">
-            <UserAvatar />
-            <UserName />
+    <div id="profile">
+        <div class="flex flex-row justify-between items-center" id="loggedin-tab" v-show="loggedin">
+            <div class="flex flex-row gap-2" id="profile">
+                <UserAvatar />
+                <UserName />
+            </div>
+            <div id="logout" v-show="loggedin">
+                <button class="flex md:flex-row gap-1 flex-col cursor-pointer items-center hover:text-amber-400 duration-75 "
+                @click="logoutHandle"
+                >
+                    <h6 class="text-xs">خروج</h6>
+                    <LogoutIcon />
+                </button>
+            </div>
         </div>
-        <div class="flex flex-row gap-4">
-            <NotifIcon>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd" d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z" clip-rule="evenodd" />
-                </svg>
-
-            </NotifIcon>
-            <NotifIcon>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-                </svg>
-            </NotifIcon>
+        <div id="unlogged" class="flex justify-between" v-show="!loggedin">
+            <div id="login" class="flex flex-row items-center align-middle gap-2">
+                <button class="flex flex-row gap-1 cursor-pointer items-center hover:text-amber-400 duration-75 "
+                @click="modalStatus"
+                >
+                    <h6 class="text-xs">ورود</h6>
+                    <LoginIcon />
+                </button>
+                <span class="relative min-w-px min-h-5 bg-neutral-200 transform"></span>
+                <button class="flex flex-row gap-1 cursor-pointer items-center hover:text-amber-400 duration-75 "
+                @click="modalStatusReg"
+                >
+                    <h6 class="text-xs">ثبت نام</h6>
+                    <RegisterIcon />
+                </button>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import NotifIcon from '../atoms/NotifIcon.vue';
+import { ref } from 'vue';
 import UserAvatar from '../atoms/UserAvatar.vue';
 import UserName from '../atoms/UserName.vue';
+import LoginIcon from '../atoms/LoginIcon.vue';
+import LogoutIcon from '../atoms/LogoutIcon.vue';
+import RegisterIcon from '../atoms/RegisterIcon.vue';
+
+const loggedin = ref(false)
+
+if (localStorage.getItem('authToken')) {
+  loggedin.value = true;
+}
+else{
+  loggedin.value = false;
+}
+const logoutHandle = () => {
+    localStorage.removeItem('authToken')
+    window.location.reload();
+}
+
+defineProps(['modalStatus', 'modalStatusReg'])
 </script>
 
 <style>

@@ -5,7 +5,9 @@
         <h3 class="font-bold text-2xl bold-irsans">امروز</h3>
     </div>
     <div id="task-btn">
-        <AddTaskButton />
+        <AddTaskButton
+        @click="handleAddTask && handleAddTask()"
+        />
     </div>
   </div>
 </template>
@@ -14,6 +16,12 @@
 import AddTaskButton from '../atoms/AddTaskButton.vue';
 import DateText from '../atoms/DateText.vue';
 
+defineProps({
+  handleAddTask: {
+    type: Function,
+    required: false
+  }
+});
 
 </script>
 

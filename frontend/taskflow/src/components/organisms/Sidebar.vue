@@ -24,8 +24,9 @@
         :urls="urls"
         />
     </div>
-    <div class="">
+    <div class="flex flex-row">
       <UserAccounts
+      v-show="loggedin"
       :is_expanded="is_expanded"
       />
     </div>
@@ -55,6 +56,15 @@ const is_expanded = ref(false);
 const toggleNav = () => {
   is_expanded.value = !is_expanded.value;
 };
+
+const loggedin = ref(false)
+
+if (localStorage.getItem('authToken')) {
+  loggedin.value = true;
+}
+else{
+  loggedin.value = false;
+}
 
 
 </script>

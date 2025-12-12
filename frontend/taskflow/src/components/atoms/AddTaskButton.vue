@@ -1,6 +1,5 @@
 <template>
-    <a href="" class="bg-black p-4 text-white w-40 rounded-2xl flex items-center justify-center" id="add-task-btn">
-        <button class="cursor-pointer" >
+        <button class="cursor-pointer bg-black p-4 text-white w-40 rounded-2xl flex items-center justify-center" id="add-task-btn">
             <h3 class="flex flex-row gap-1">
             <span id="add-task-icon">
                 <img src="" alt="">
@@ -14,7 +13,6 @@
             </span>
             </h3>
         </button>
-    </a>
 </template>
 
 <script setup>

@@ -19,10 +19,11 @@ onMounted(() => {
 });
 </script>
 
-<template>
+<template>   
    <div class="flex md:flex-row flex-col justify-between">
     <pre>{{ message }}</pre>
     <MobileNav class="sm:block lg:hidden" />
     <SideBar />
+
    </div>
 </template>

@@ -7,12 +7,12 @@ import UserPanel from '@/components/organisms/UserPanel.vue';
 
 <template>
    <div class="flex md:flex-row flex-col justify-between">
-    <UserPanel />
-    <MobileNav
-    class="sm:block lg:hidden"
-    />
-    <MyTasksPanel />
-    <SideBar />
+      <MobileNav
+      class="sm:block lg:hidden"
+      />
+      <MyTasksPanel />
+      <SideBar />
+      <UserPanel />
    </div>
 </template>
 
