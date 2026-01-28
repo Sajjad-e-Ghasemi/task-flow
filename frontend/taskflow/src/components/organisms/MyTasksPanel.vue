@@ -14,19 +14,12 @@
         </div>
         <div class=" text-gray-400" id="tabTasks">
           <div class="flex flex-row gap-15">
-            <a href=""  
-            v-for="day in days"
-            @click="day.active==false"
-            >
-              <p
-              :class="day.active ? 'text-amber-400':''"
-              >
-                {{ day.tabTitle }}
-              </p>
-            </a>
           </div>
 
         </div>
+    </div>
+    <div class="w-full text-center">
+      <h3 v-show="!is_login" class="text-2xl text-gray-400">:(شما ثبت نام نکردید</h3>
     </div>
   </div>
 </template>
@@ -36,11 +29,13 @@ import { reactive, ref } from 'vue';
 import AboutYou from '../molecules/AboutYou.vue';
 import SearchBar from '../molecules/SearchBar.vue';
 
-const days = reactive([
-  {tabId : 1 ,tabTitle : "امروز", active: true},
-  {tabId : 2 ,tabTitle : "فردا", active : false},
-  {tabId : 3 ,tabTitle : "پس فردا", active : false},
-])
+const is_login = ref(false)
+
+if (localStorage.getItem('authToken')) {
+  is_login.value = true
+}else{
+  is_login.value = false
+}
 </script>
 
 <style>

@@ -6,7 +6,7 @@
     </div>
     <div id="task-btn">
         <AddTaskButton
-        @click="handleAddTask && handleAddTask()"
+        @click="handleAddTask"
         />
     </div>
   </div>
@@ -20,6 +20,9 @@ defineProps({
   handleAddTask: {
     type: Function,
     required: false
+  },
+  is_open:{
+    type: Boolean,
   }
 });
 

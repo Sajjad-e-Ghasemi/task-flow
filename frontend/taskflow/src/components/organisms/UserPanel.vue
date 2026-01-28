@@ -10,22 +10,32 @@
             :modalStatus="modalStatus"
             :modalStatusReg="modalStatusReg"
             />
+
             <ModalLogin
             :is_open="is_open"
             :modelStatus="modalStatus"
             />
+            
             <ModalRegister
             :is_open_login="is_open"
             :is_open="register_modalopen"
             :modelStatus="modalStatusReg"
             />
+
+            <ModalAddTask
+            :is_open="is_open_task"
+            :modelStatus="showModalTask"
+            />
+             
             <div class="flex justify-center">
                 <TaskTracker />
             </div>
 
             <DateBox
-            :handleAddTask="handleAddTask"
+            :handleAddTask="modalStatusTask"
+            :modelStatus="showModalTask"
             />
+
 
             <CalenadrBox /> 
             <div class="overflow-y-auto p-2 flex flex-col gap-2 md:max-h-[400px] max-h-[300px]">
@@ -49,9 +59,11 @@ import UserProfile from '../molecules/UserProfile.vue';
 
 import ModalLogin from '../molecules/ModalLogin.vue';
 import ModalRegister from '../molecules/ModalRegister.vue';
+import ModalAddTask from '../molecules/ModalAddTask.vue';
 
 const toast = useToast();
 const is_open = ref(false);
+const is_open_task = ref(false);
 
 const register_modalopen = ref(false);
 
@@ -63,10 +75,15 @@ const modalStatusReg = () => {
     register_modalopen.value =  !register_modalopen.value;
 }
 
-function handleAddTask(){
+const showModalTask = () => {
+    is_open_task.value = !is_open_task.value
+}
+
+const modalStatusTask = () => {
     const loggedin = ref(false)
     if (localStorage.getItem('authToken')) {
         loggedin.value = true;
+        is_open_task.value = !is_open_task.value;
     }
     else{
         toast.error("لطفا ابتدا وارد حساب کاربری خود شوید");
