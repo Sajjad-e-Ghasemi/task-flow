@@ -9,7 +9,7 @@ from rest_framework import status
 
 class TaksView(ViewSet):
     def list(self, request):
-        tasks = TaskModel.objects.all()
+        tasks = TaskModel.objects.filter(owner=request.user)
         serializer = TaskSerializer(tasks, many=True)
         return Response(
             serializer.data, status=status.HTTP_200_OK
@@ -17,7 +17,7 @@ class TaksView(ViewSet):
 
     def retrieve(self, request, pk=None):
         try:
-            task = TaskModel.objects.get(pk=pk)
+            task = TaskModel.objects.get(pk=pk, owner=request.user)
             serializer = TaskSerializer(task)
             return Response(
                 serializer.data, status=status.HTTP_200_OK
@@ -30,7 +30,7 @@ class TaksView(ViewSet):
     def create(self, request):
         serializer = TaskSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(owner=request.user)
             return Response(
                 serializer.data, status=status.HTTP_201_CREATED
             )
@@ -41,7 +41,7 @@ class TaksView(ViewSet):
 
     def update(self ,request, pk=None):
         try:
-            task = TaskModel.objects.get(pk=pk)
+            task = TaskModel.objects.get(pk=pk, owner=request.user)
             serializer = TaskSerializer(task, data=request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -59,7 +59,7 @@ class TaksView(ViewSet):
 
     def destroy(self, request, pk=None):
         try:
-            task = TaskModel.objects.get(pk=pk)
+            task = TaskModel.objects.get(pk=pk, owner=request.user)
             task.delete()
             return Response(
                 status=status.HTTP_204_NO_CONTENT
