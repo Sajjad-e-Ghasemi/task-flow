@@ -9,6 +9,7 @@ class TaskSerializer(ModelSerializer):
 
     def create(self, validated_data):
         task = TaskModel.objects.create(
+            owner = self.context['request'].user,
             task_title = validated_data['task_title'],
             task_desc = validated_data['task_desc'],
             task_author = validated_data['task_author']
