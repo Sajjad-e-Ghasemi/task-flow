@@ -11,7 +11,6 @@ class TaskModel(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    
     task_title = models.CharField(
         max_length=500, 
         verbose_name="نام وظیفه"
