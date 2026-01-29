@@ -9,7 +9,7 @@ from rest_framework import status
 
 class TaksView(ViewSet):
     def list(self, request):
-        tasks = TaskModel.objects.filter(owner=request.user)
+        tasks = TaskModel.objects.filter(owner=request.user.id)
         serializer = TaskSerializer(tasks, many=True)
         return Response(
             serializer.data, status=status.HTTP_200_OK
@@ -28,7 +28,7 @@ class TaksView(ViewSet):
             )
         
     def create(self, request):
-        serializer = TaskSerializer(data=request.data)
+        serializer = TaskSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save(owner=request.user)
             return Response(
