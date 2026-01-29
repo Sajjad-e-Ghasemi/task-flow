@@ -18,19 +18,16 @@ class TaskModel(models.Model):
     task_desc = models.TextField(
         verbose_name="توضیحات وظایف"
     )
-
-    task_author = models.ForeignKey(
-        Account, 
-        on_delete=models.CASCADE
-    )
     task_started_at = models.DateTimeField(
         verbose_name="تاریخ شروع وظیفه",
         null=True,
+        blank=True,
         editable=False
     )
     task_ended_at = models.DateTimeField(
         verbose_name="تاریخ پایان وظیفه",
-        null=True
+        null=True,
+        blank=True,
     )
     is_done = models.BooleanField(
         default=False, 
