@@ -32,20 +32,21 @@
 
     const task_title = ref('');
     const task_desc = ref('');
-    const task_author = ref(null);
         
     const inputs = reactive([
       {label: 'عنوان وظیفه', type: 'text', placeholder: 'عنوان وظیفه رو وارد کن', model : task_title},
       {label: 'توضیحات', type: 'text', placeholder: 'توضیحات وظیفه خود را وارد کنید', model : task_desc},
-      {label: 'نویسنده', type: 'number', model : task_author},
     ]);
     
     async function handeSumbit() {
       try {
         const response = await axios.post('api/tasks/', {
           task_title: task_title.value,
-          task_desc: task_desc.value,
-          task_author: Number(task_author.value),
+          task_desc: task_desc.value
+        },{
+         headers: {
+          'Authorization': `Token ${localStorage.getItem('authToken')}`
+          }
         });
 
         window.location.reload();
