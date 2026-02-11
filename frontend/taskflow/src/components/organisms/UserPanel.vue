@@ -202,7 +202,7 @@ async function toggleTaskStatus(taskId) {
 
   try {
     // ارسال به سرور
-    await axios.put(
+    await axios.patch(
       `api/tasks/${taskId}/`,
       { [statusField]: newStatus },
       {
