@@ -10,7 +10,7 @@
     </div>
     <div class="">
         <h1 class="text-2xl bold-irsans">
-            8 تاست
+            {{ count }} تاست
         </h1>
     </div>
   </div>
@@ -19,7 +19,7 @@
 <script setup>
 import WelcomeText from '../atoms/WelcomeText.vue';
 
-
+const props = defineProps(['count'])
 </script>
 
 <style>
