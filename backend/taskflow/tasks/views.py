@@ -56,6 +56,25 @@ class TaksView(ViewSet):
             return Response(
                 {"detail": "Account not found."}, status=status.HTTP_404_NOT_FOUND
             )
+            
+    def partial_update(self, request, pk=None):
+        try:
+            task = TaskModel.objects.get(pk=pk, owner=request.user)
+            serializer = TaskSerializer(task, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    serializer.data, status=status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    serializer.errors, status=status.HTTP_400_BAD_REQUEST
+                )
+        except TaskModel.DoesNotExist:
+            return Response(
+                {"detail": "Task not found."}, status=status.HTTP_404_NOT_FOUND
+            )
+
 
     def destroy(self, request, pk=None):
         try:
