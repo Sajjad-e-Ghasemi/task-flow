@@ -87,7 +87,6 @@ onMounted(() => {
   }
 })
 
-/* ===================== API ===================== */
 
 async function getTasks() {
   loading.value = true
