@@ -3,6 +3,7 @@
     <div class="">
         <AboutYou
         :count="count"
+        :username="username"
         />
     </div>
     <div class="">
@@ -77,6 +78,11 @@ const tasks = ref([])
 const loading = ref(false)
 const error = ref(null)
 const updatingTaskId = ref(null)
+const task_owner = ref(0)
+const username = ref("")
+
+// کش برای جلوگیری از درخواست‌های تکراری
+const userCache = ref({})
 
 onMounted(() => {
   const token = localStorage.getItem('authToken')
@@ -87,7 +93,27 @@ onMounted(() => {
   }
 })
 
+/* ===================== GET USERNAME BY ID ===================== */
+async function getUsernameById(id) {
+  if (userCache.value[id]) return userCache.value[id]
 
+  try {
+    const { data } = await axios.get(`api/accounts/${id}/`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('authToken')}`,
+      },
+    })
+
+    userCache.value[id] = data.username
+    return data.username
+
+  } catch (err) {
+    console.error(err)
+    return null
+  }
+}
+
+/* ===================== GET TASKS ===================== */
 async function getTasks() {
   loading.value = true
   error.value = null
@@ -99,7 +125,19 @@ async function getTasks() {
       },
     })
 
+    // tasks را ذخیره کن
     tasks.value = data
+
+    // owner id از اولین تسک (اگر وجود داشت)
+    task_owner.value = data[0]?.owner || 0
+
+    // گرفتن username با استفاده از owner id
+    if (task_owner.value) {
+      username.value = await getUsernameById(task_owner.value)
+    }
+
+    console.log('task_owner:', task_owner.value)
+    console.log('username:', username.value)
     console.log('✅ تسک‌ها دریافت شدند:', data.length)
 
   } catch (err) {
@@ -115,6 +153,7 @@ async function getTasks() {
   }
 }
 
+/* ===================== TOGGLE STATUS ===================== */
 async function toggleTaskStatus(taskId) {
   if (updatingTaskId.value) return
 
@@ -136,22 +175,18 @@ async function toggleTaskStatus(taskId) {
         },
       }
     )
-
-
   } catch (err) {
     console.log('❌ STATUS:', err.response.status)
     console.log('❌ DATA:', err.response.data)
 
     task.is_done = previous
     alert('خطا در تغییر وضعیت')
-  }
-  finally {
+  } finally {
     updatingTaskId.value = null
   }
 }
 
 /* ===================== COMPUTED ===================== */
-
 const pendingTasks = computed(() =>
   tasks.value.filter(task => task.is_done === false)
 )
@@ -163,7 +198,6 @@ const completedTasks = computed(() =>
 const count = computed(() => pendingTasks.value.length)
 
 /* ===================== HELPERS ===================== */
-
 function refreshTasks() {
   if (is_login.value) getTasks()
 }

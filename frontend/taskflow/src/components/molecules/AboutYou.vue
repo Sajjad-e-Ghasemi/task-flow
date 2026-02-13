@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-col gap-3">
-    <div class="">
-        <WelcomeText />
+    <div>
+        <h2 class="text-gray-500 text-xl mt-7">
+            سلام، {{username}}!
+        </h2>
     </div>
     <div class="">
         <h1 class="text-2xl bold-irsans">
@@ -19,7 +21,7 @@
 <script setup>
 import WelcomeText from '../atoms/WelcomeText.vue';
 
-const props = defineProps(['count'])
+const props = defineProps(['count', 'username'])
 </script>
 
 <style>

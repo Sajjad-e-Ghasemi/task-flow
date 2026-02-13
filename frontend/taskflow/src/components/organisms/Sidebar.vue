@@ -25,10 +25,6 @@
         />
     </div>
     <div class="flex flex-row">
-      <UserAccounts
-      v-show="loggedin"
-      :is_expanded="is_expanded"
-      />
     </div>
   </div>
 </template>
